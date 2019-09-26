@@ -15,6 +15,7 @@ class Animal{
         this.name=name;
         this.color = color;
     }
+    //webpack 的babel还是没安装上
     //static type = "animal";//这个才是真正高级的语法，没有babel处理不了
     getAnimal(){
         console.log("name is "+this.name+" ,color is "+this.color+" type is"+type);
