@@ -3,6 +3,8 @@ const path = require("path");
 //引入压缩js和css插件
 //import optimizeCssAssetsWebpackPlugin from "optimize-css-assets-webpack-plugin"
 const optimizeCssAssets = require("optimize-css-assets-webpack-plugin");
+const uglifyjs = require("uglifyjs-webpack-plugin");
+const htmlWebpack = require("html-webpack-plugin");
 
 module.exports = {
     entry:  path.join(__dirname,'./src/index.js'),
@@ -38,6 +40,13 @@ module.exports = {
     },
     //压缩js和css
     optimization:{
-        minimizer:[new optimizeCssAssets({})]
-    }
+        minimizer:[new optimizeCssAssets({}),new uglifyjs({cache:true,parallel:true,sourceMap:true})]
+    },
+    //配置一个plugins节点，配置html-webpack-plugin
+    plugins:[
+        new htmlWebpack({
+            template:path.join(__dirname,'./src/index.html'),
+            filename:'index.html'
+        })
+    ]
 };
